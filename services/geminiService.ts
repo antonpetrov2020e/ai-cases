@@ -2,7 +2,7 @@ import { GoogleGenAI, GenerateContentResponse } from "@google/genai";
 import { cases } from "../data/cases";
 
 // Initialize the Gemini API client
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+const ai = new GoogleGenAI({ apiKey: 'AIzaSyD0eEAoL2cXDCkC0dcUbbMu7hq6lcxoB0g' });
 
 const SYSTEM_INSTRUCTION = `
 Ты — высококвалифицированный экспертный консультант по внедрению искусственного интеллекта.
