@@ -1,0 +1,33 @@
+name: Deploy AI Cases
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Скачиваем код
+        uses: actions/checkout@v4
+
+      - name: Устанавливаем Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Устанавливаем зависимости
+        run: npm ci
+
+      - name: Собираем проект
+        run: npm run build
+
+      - name: Отправляем на сервер
+        uses: appleboy/scp-action@master
+        with:
+          host: "178.72.150.79"
+          username: "root"
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: "dist/*"
+          target: "/var/www/aicases"
+          strip_components: 1
